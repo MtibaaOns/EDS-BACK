@@ -2,9 +2,10 @@ package org.example.authentiation.entities;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-@Table(name = "intervention")
+@Table(name = "Interventions")
 public class Interventions implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,12 +25,14 @@ public class Interventions implements Serializable {
     private String client;
     private String pieceRechange;
 
+    private Date date;
+
 
 
     public Interventions() {
     }
 
-    public Interventions(String cause, Boolean facturer, Double montantHT, Boolean cloturer, String dateDeb, String dateFin, String code, String duree, String observation, String technicien, String client, String pieceRechange, String technicienId) {
+    public Interventions(String cause, Boolean facturer, Double montantHT, Boolean cloturer, String dateDeb, String dateFin, String code, String duree, String observation, String technicien, String client, String pieceRechange, String technicienId,Date date) {
         this.cause = cause;
         this.facturer = facturer;
         this.montantHT = montantHT;
@@ -42,6 +45,7 @@ public class Interventions implements Serializable {
         this.technicien = technicien;
         this.client = client;
         this.pieceRechange = pieceRechange;
+        this.date = date;
 
     }
 
@@ -169,5 +173,13 @@ public class Interventions implements Serializable {
                 ", pieceRechange='" + pieceRechange + '\'' +
 
                 '}';
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

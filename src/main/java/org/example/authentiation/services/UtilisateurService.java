@@ -18,7 +18,7 @@ public interface UtilisateurService {
         Utilisateur getUtilisateurByEmail(String email);
     public List<Utilisateur> getAllUtilisateurByRole(TypeUser role);
 
-    Utilisateur updateUtilisateur(Utilisateur utilisateur, Long id, String nom, String prenom, String adresse, String tel, String email, String login, String password, String raisonSocial, String mf, String specialite,TypeUser role);
+    Utilisateur updateUtilisateur(Utilisateur utilisateur, Long id, String nom, String prenom, String adresse, String tel, String email, String raisonSocial, String mf, String specialite,TypeUser role);
 
 
     void deleteUtilisateur(Long id);

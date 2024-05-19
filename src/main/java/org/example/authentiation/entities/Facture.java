@@ -3,9 +3,10 @@ package org.example.authentiation.entities;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
-@Table(name = "facture")
+@Table(name = "Facture")
 public class Facture implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,17 +31,20 @@ public class Facture implements Serializable {
     @Column(name = "totalTTC")
     private Double totalTTC;
 
+    private Date dateN;
+
 
 
     public Facture() {
     }
 
-    public Facture(String code, String date, String client, Double totalHT, Integer tva) {
+    public Facture(String code, String date, String client, Double totalHT, Integer tva, Date dateN) {
         this.code = code;
         this.date = date;
         this.client = client;
         this.totalHT = totalHT;
         this.tva = tva;
+        this.dateN = dateN;
 
     }
 
@@ -113,5 +117,13 @@ public class Facture implements Serializable {
                 ", tva=" + tva +
                 ", totalTTC=" + totalTTC +
                 '}';
+    }
+
+    public Date getDateN() {
+        return dateN;
+    }
+
+    public void setDateN(Date dateN) {
+        this.dateN = dateN;
     }
 }

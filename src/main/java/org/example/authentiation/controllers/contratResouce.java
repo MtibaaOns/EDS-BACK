@@ -51,5 +51,9 @@ public class contratResouce {
     public List<contrat> getContratsByClient(@PathVariable String client) {
         return contratService.getContratsByClient(client);
     }
+    @GetMapping("/today")
+    public List<contrat> getContratsForToday() {
+        return contratService.getContratsForToday();
+    }
 }
 

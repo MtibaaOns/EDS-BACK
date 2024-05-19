@@ -3,11 +3,13 @@ package org.example.authentiation.services;
 
 import jakarta.transaction.Transactional;
 import org.example.authentiation.entities.Facture;
+import org.example.authentiation.entities.Interventions;
 import org.example.authentiation.exception.FactureNotFoundException;
 import org.example.authentiation.repositories.FactureRepo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,4 +52,16 @@ public class FactureService {
     public void deleteFacture(Long id) {
         factureRepo.deleteFactureById(id);
     }
+
+    public List<Facture> getFactureByClient(String client) {
+        return factureRepo.findFactureByClient(client);    }
+
+    public List<Facture> getFacturesForToday() {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String todayFormatted = today.format(formatter);
+        System.out.println(todayFormatted);
+        return factureRepo.findFacturesByFormattedDateCreation(todayFormatted);
+    }
+
 }

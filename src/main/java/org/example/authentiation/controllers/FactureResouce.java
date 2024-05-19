@@ -2,6 +2,7 @@ package org.example.authentiation.controllers;
 
 
 import org.example.authentiation.entities.Facture;
+import org.example.authentiation.entities.Interventions;
 import org.example.authentiation.services.FactureService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,5 +49,13 @@ public class FactureResouce {
     public ResponseEntity<?> deleteFacture(@PathVariable("id") Long id) {
         factureService.deleteFacture(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/client/{client}")
+    public List<Facture> getFactureByClient(@PathVariable String client) {
+        return factureService.getFactureByClient(client);
+    }
+    @GetMapping("/today")
+    public List<Facture> getFacturesForToday() {
+        return factureService.getFacturesForToday();
     }
 }

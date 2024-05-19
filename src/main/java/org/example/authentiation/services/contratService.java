@@ -10,6 +10,7 @@ import org.example.authentiation.repositories.contratRepo;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,5 +68,11 @@ public class contratService {
     public List<contrat> getContratsByClient (String client) {
         return contratRepo.findContratsByClient(client);
     }
-
+    public List<contrat> getContratsForToday() {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String todayFormatted = today.format(formatter);
+        System.out.println(todayFormatted);
+        return contratRepo.findContratsByFormattedDateCreation(todayFormatted);
+    }
 }

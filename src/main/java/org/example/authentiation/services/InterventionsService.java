@@ -10,6 +10,7 @@ import org.example.authentiation.repositories.InterventionsRepo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,13 @@ public class InterventionsService {
 
         return interventionsRepo.save(myIntervention);
     }
+    public Interventions updateInterventiontech (Interventions interventions, Long id ,Boolean facturer,String duree ){
+        Optional<Interventions> optionalIntervention = interventionsRepo.findInterventionById(id);
+        Interventions myInterventiontech = optionalIntervention.orElseThrow(() -> new InterventionsNotFoundException("Intervention by id " + id + " was not found"));
+        myInterventiontech.setCloturer(facturer);
+        myInterventiontech.setDuree(duree);
+        return interventionsRepo.save(myInterventiontech);
+    }
 
 
     public Interventions findInterventionById(Long id){
@@ -66,5 +74,13 @@ public class InterventionsService {
     public List<Interventions> getInterventionsByTechnician(String technician) {
         return interventionsRepo.findInterventionsByTechnicien(technician);
     }
-
+    public List<Interventions> getInterventionsByClient(String client) {
+        return interventionsRepo.findInterventionsByClient(client);    }
+    public List<Interventions> getInterventionsForToday() {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String todayFormatted = today.format(formatter);
+        System.out.println(todayFormatted);
+        return interventionsRepo.findInterventionsByFormattedDateCreation(todayFormatted);
+    }
 }

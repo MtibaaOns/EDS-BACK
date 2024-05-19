@@ -49,8 +49,6 @@ public class UtilisateurController {
                 utilisateur.getAdresse(),
                 utilisateur.getTel(),
                 utilisateur.getEmail(),
-                utilisateur.getLogin(),
-                utilisateur.getPassword(),
                 utilisateur.getMf(),
                 utilisateur.getRaisonSocial(),
                 utilisateur.getSpecialite(),

@@ -2,6 +2,7 @@ package org.example.authentiation.entities;
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "contrat")
@@ -19,11 +20,15 @@ public class contrat implements Serializable {
     private Integer nbInterAnnee;
     private Double mtForfaitaire;
     private String client;
+
+    private Date date;
+
+    
     public  contrat(){
 
     }
 
-    public contrat(Long numcontrat, String dateDebut, String dateFin, Integer nbInterMois, Integer nbInterAnnee, Double mtForfaitaire) {
+    public contrat(Long numcontrat, String dateDebut, String dateFin, Integer nbInterMois, Integer nbInterAnnee, Double mtForfaitaire,String client) {
         this.numcontrat = numcontrat;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -31,6 +36,8 @@ public class contrat implements Serializable {
         this.nbInterAnnee = nbInterAnnee;
         this.mtForfaitaire = mtForfaitaire;
         this.client = client;
+        this.date = new Date();
+
     }
     public void setNumcontrat(Long numcontrat) {
         this.numcontrat = numcontrat;
@@ -93,8 +100,6 @@ public class contrat implements Serializable {
         return client;
     }
 
-
-
     public String toString() {
         return "Contrat{" +
                 "numcontrat=" + numcontrat +
@@ -105,6 +110,12 @@ public class contrat implements Serializable {
                 ", nbInterMois=" + nbInterMois +
                 ", nbInterAnnee=" + nbInterAnnee +
                 ", mtForfaitaire=" + mtForfaitaire +
+
                 '}';
     }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    public Date getDate (){return date ; }
 }

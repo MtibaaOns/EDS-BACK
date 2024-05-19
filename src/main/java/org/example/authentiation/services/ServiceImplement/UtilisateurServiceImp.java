@@ -64,7 +64,7 @@ public class UtilisateurServiceImp implements UtilisateurService {
 
 
     @Override
-    public Utilisateur updateUtilisateur(Utilisateur utilisateur, Long id, String nom, String prenom, String adresse, String tel, String email, String login, String password, String raisonSocial, String mf, String specialite,TypeUser role) {
+    public Utilisateur updateUtilisateur(Utilisateur utilisateur, Long id, String nom, String prenom, String adresse, String tel, String email, String raisonSocial, String mf, String specialite,TypeUser role) {
         Optional<Utilisateur> optionalUtilisateur = utilisateurRepository.findById(id);
 
         Utilisateur myutilisateur = optionalUtilisateur.orElseThrow(() -> new UtilisateurNotFoundException("utilisateur by id " + id + " was not found"));
@@ -73,15 +73,10 @@ public class UtilisateurServiceImp implements UtilisateurService {
         myutilisateur.setAdresse(adresse);
         myutilisateur.setEmail(email);
         myutilisateur.setTel(tel);
-        myutilisateur.setLogin(login);
-        myutilisateur.setMf(mf);
         myutilisateur.setRaisonSocial(raisonSocial);
         myutilisateur.setSpecialite(specialite);
         myutilisateur.setRole(role);
         // Hashage du nouveau mot de passe
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(password);
-        myutilisateur.setPassword(hashedPassword);
 
         // Vous pouvez également mettre à jour d'autres propriétés si nécessaire
 

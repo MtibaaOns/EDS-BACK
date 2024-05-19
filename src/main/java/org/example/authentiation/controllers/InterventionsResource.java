@@ -47,6 +47,13 @@ public class InterventionsResource {
         return new ResponseEntity<>(updatedIntervention, HttpStatus.OK);
     }
 
+    @PutMapping("/updatetech/{id}")
+    public ResponseEntity<Interventions> updateInterventiontech(@RequestBody Interventions intervention, @PathVariable Long id, @RequestParam Boolean cloturer, @RequestParam String duree) {
+        Interventions updatedIntervention = interventionsService.updateInterventiontech(intervention,id,cloturer,duree);
+        return new ResponseEntity<>(updatedIntervention, HttpStatus.OK);
+    }
+
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteIntervention(@PathVariable("id") Long id) {
         interventionsService.deleteIntervention(id);
@@ -55,5 +62,15 @@ public class InterventionsResource {
     @GetMapping("/technician/{technician}")
     public List<Interventions> getInterventionsByTechnician(@PathVariable String technician) {
         return interventionsService.getInterventionsByTechnician(technician);
+    }
+
+
+    @GetMapping("/client/{client}")
+    public List<Interventions> getInterventionsByClient(@PathVariable String client) {
+        return interventionsService.getInterventionsByClient(client);
+    }
+    @GetMapping("/today")
+    public List<Interventions> getInterventionsForToday() {
+        return interventionsService.getInterventionsForToday();
     }
 }
