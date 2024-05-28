@@ -31,11 +31,11 @@ public class demandeService {
         return demandeRepo.findAll();
     }
 
-    public demande_intervention updateDemande(demande_intervention demande_intervention, Long numDem, String statut, String titre, String priorite, String dateDeb, String dateFin, String description) {
+    public demande_intervention updateDemande(demande_intervention demande_intervention, Long numDem, String client, String titre, String priorite, String dateDeb, String dateFin, String description) {
         Optional<demande_intervention> optionalDemande = demandeRepo.findDemandeBynumDem(numDem);
         demande_intervention myDemande = optionalDemande.orElseThrow(() -> new demandeNotFoundException("Client by id " + numDem + " was not found"));
 
-        myDemande.setStatut(statut);
+        myDemande.setClient(client);
         myDemande.setTitre(titre);
         myDemande.setPriorite(priorite);
         myDemande.setDateFin(dateFin);
@@ -58,7 +58,9 @@ public class demandeService {
     public List<demande_intervention> findDemandesByClientId(Long clientId) {
         return demandeRepo.findDemandesByClientId(clientId);
     }
-
+    public List<String> getAllClients() {
+        return demandeRepo.findAllClients();
+    }
 
 
 

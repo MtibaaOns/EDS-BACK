@@ -37,8 +37,8 @@ public class demandeResouce {
         demande_intervention newDemande = demandeService.addDemande(demandeIntervention) ;
         return new ResponseEntity<>(newDemande, HttpStatus.CREATED);}
     @PutMapping("/update/{numDem}")
-    public ResponseEntity<demande_intervention> updateDemande(@RequestBody demande_intervention demandeIntervention,@PathVariable Long numDem,@RequestParam String statut,@RequestParam String titre,@RequestParam String priorite,@RequestParam String dateDeb,@RequestParam String dateFin,@RequestParam String description) {
-        demande_intervention updateDemande = demandeService.updateDemande(demandeIntervention,numDem,statut,titre,priorite,dateFin,dateDeb,description);
+    public ResponseEntity<demande_intervention> updateDemande(@RequestBody demande_intervention demandeIntervention,@PathVariable Long numDem,@RequestParam String client,@RequestParam String titre,@RequestParam String priorite,@RequestParam String dateDeb,@RequestParam String dateFin,@RequestParam String description) {
+        demande_intervention updateDemande = demandeService.updateDemande(demandeIntervention,numDem,client,titre,priorite,dateFin,dateDeb,description);
         return new ResponseEntity<>(updateDemande, HttpStatus.OK);
     }
 
@@ -54,6 +54,10 @@ public class demandeResouce {
     public ResponseEntity<List<demande_intervention>> getDemandesByClientId(@PathVariable("clientId") Long clientId) {
         List<demande_intervention> demandes = demandeService.findDemandesByClientId(clientId);
         return new ResponseEntity<>(demandes, HttpStatus.OK);
+    }
+    @GetMapping("/clients")
+    public List<String> getAllClients() {
+        return demandeService.getAllClients();
     }
 
 

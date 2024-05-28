@@ -15,7 +15,7 @@ public class demande_intervention implements Serializable {
     @Column(name = "code")
     private String code;
 
-    private String statut;
+    private String client;
     private String titre;
     private String priorite;
     private String dateFin; // Changement de LocalDate en String
@@ -27,9 +27,9 @@ public class demande_intervention implements Serializable {
     public demande_intervention() {
     }
 
-    public demande_intervention(Long numDem, String statut, String titre, String priorite, String dateDeb, String dateFin, String description,long clientId) {
+    public demande_intervention(Long numDem, String client, String titre, String priorite, String dateDeb, String dateFin, String description,long clientId) {
         this.numDem = numDem;
-        this.statut = statut;
+        this.client = client;
         this.titre = titre;
         this.priorite = priorite;
         this.dateFin = dateFin;
@@ -52,12 +52,12 @@ public class demande_intervention implements Serializable {
         this.numDem = numDem;
     }
 
-    public String getStatut() {
-        return statut;
+    public String getClient() {
+        return client;
     }
 
-    public void setStatut(String statut) {
-        this.statut = statut;
+    public void setClient(String client) {
+        this.client = client;
     }
 
     public String getTitre() {
@@ -113,7 +113,7 @@ public class demande_intervention implements Serializable {
         return "Ticket{" +
                 "numDem=" + numDem +
                 ", code='" + code + '\'' +
-                ", statut='" + statut + '\'' +
+                ", client='" + client + '\'' +
                 ", titre='" + titre + '\'' +
                 ", priorite='" + priorite + '\'' +
                 ", dateFin='" + dateFin + '\'' +
